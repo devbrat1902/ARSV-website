@@ -81,7 +81,7 @@ export default function PortfolioSection() {
           {projects.map((project, index) => (
             <div
               key={project.id}
-              className="relative w-[100vw] h-full flex flex-col justify-between py-28 md:py-32 px-6 md:px-16 bg-[#FFFFFF] border-r border-[#E8E8E8] overflow-hidden"
+              className="relative w-[100vw] h-full flex flex-col justify-between pt-24 pb-8 md:py-32 px-6 md:px-16 bg-[#FFFFFF] border-r border-[#E8E8E8] overflow-hidden"
             >
               {/* Subtle ambient lighting contrast overlay per slide */}
               {index === 0 && (
@@ -130,7 +130,7 @@ export default function PortfolioSection() {
               </div>
 
               {/* Main Content Layout Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center my-auto z-10">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-12 lg:gap-20 items-center my-auto z-10">
                 
                 {/* Left Side: Staggered Content Reveals */}
                 <motion.div 
@@ -138,7 +138,7 @@ export default function PortfolioSection() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                  className="lg:col-span-5 space-y-8"
+                  className="lg:col-span-5 space-y-6 md:space-y-8"
                 >
                   <div className="space-y-3">
                     <span className="text-[10px] uppercase tracking-[0.35em] text-[#B8975A] font-semibold block">
@@ -157,7 +157,7 @@ export default function PortfolioSection() {
                   </p>
 
                   {/* Highlights Grid */}
-                  <div className="pt-8 border-t border-[#E8E8E8] grid grid-cols-3 gap-6">
+                  <div className="pt-4 md:pt-8 border-t border-[#E8E8E8] grid grid-cols-3 gap-2 md:gap-6">
                     {project.details.map((detail, idx) => (
                       <motion.div 
                         key={detail}
@@ -179,7 +179,7 @@ export default function PortfolioSection() {
                 </motion.div>
 
                 {/* Right Side: Parallax Image Showcase */}
-                <div className="lg:col-span-7 h-[42vh] md:h-[60vh] relative group overflow-hidden border border-[#E8E8E8] bg-[#FFFFFF]">
+                <div className="lg:col-span-7 h-[30vh] md:h-[60vh] relative group overflow-hidden border border-[#E8E8E8] bg-[#FFFFFF]">
                   
                   {/* Outer parallax container */}
                   <motion.div
