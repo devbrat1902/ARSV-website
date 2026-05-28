@@ -380,7 +380,7 @@ export default function InteriorPage() {
           transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
           className="w-full aspect-square bg-white flex items-center justify-center p-10 font-serif text-[clamp(1rem,1.6vw,1.4rem)] font-light text-[#111111] text-center"
         >
-          We don't just design interiors.
+          We don&apos;t just design interiors.
         </motion.div>
         
         <motion.div

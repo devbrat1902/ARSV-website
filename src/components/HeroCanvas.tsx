@@ -1,25 +1,19 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import {
   motion,
   AnimatePresence,
   useScroll,
   useTransform,
   MotionValue,
+  Variants,
 } from "framer-motion";
 import { getImageCache } from "@/lib/imageCache";
 
 /* -------------------------------------------------------------
    Configuration
 ------------------------------------------------------------- */
-const TOTAL_FRAMES = 192;
-
-/** Helper to match the path used by the pre‑loader. */
-function getFramePath(idx: number): string {
-  const frameNum = String(idx + 1).padStart(3, "0");
-  return `/sequence-1/ezgif-frame-${frameNum}.jpg`;
-}
 
 /* -------------------------------------------------------------
    Animated Text Component (Staggered Word Reveal / Exit)
@@ -33,13 +27,53 @@ interface AnimatedTextProps {
   exitEnd?: number;
 }
 
-const AnimatedText = ({ 
-  text, 
-  className, 
-  delay = 0, 
+/** Single word component that safely calls useTransform at the top level */
+const AnimatedWord = ({
+  word,
+  index,
+  delay,
+  progress,
+  startScroll,
+  endScroll,
+}: {
+  word: string;
+  index: number;
+  delay: number;
+  progress: MotionValue<number>;
+  startScroll: number;
+  endScroll: number;
+}) => {
+  const y = useTransform(progress, [0, startScroll, endScroll], ["0%", "0%", "-100%"]);
+  const opacity = useTransform(progress, [0, startScroll, endScroll], [1, 1, 0]);
+  const filter = useTransform(progress, [0, startScroll, endScroll], ["blur(0px)", "blur(0px)", "blur(4px)"]);
+
+  return (
+    <span style={{ display: "inline-block", overflow: "hidden", verticalAlign: "bottom" }}>
+      <motion.span style={{ display: "inline-block", y, opacity, filter }}>
+        <motion.span
+          initial={{ y: "100%", opacity: 0 }}
+          animate={{ y: "0%", opacity: 1 }}
+          transition={{
+            duration: 0.9,
+            delay: delay + index * 0.08,
+            ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+          }}
+          style={{ display: "inline-block" }}
+        >
+          {word}&nbsp;
+        </motion.span>
+      </motion.span>
+    </span>
+  );
+};
+
+const AnimatedText = ({
+  text,
+  className,
+  delay = 0,
   progress,
   exitStart = 0.05,
-  exitEnd = 0.2
+  exitEnd = 0.2,
 }: AnimatedTextProps) => {
   const words = text.split(" ");
   const rangeWidth = exitEnd - exitStart;
@@ -48,34 +82,18 @@ const AnimatedText = ({
   return (
     <span className={className} style={{ display: "inline" }}>
       {words.map((word, i) => {
-        // Calculate scroll offsets for exit stagger per word
         const startScroll = exitStart + i * (wordStep * 0.5);
         const endScroll = Math.min(startScroll + wordStep * 1.5, exitEnd);
-
-        // Map scroll progress to exit animations
-        const y = useTransform(progress, [0, startScroll, endScroll], ["0%", "0%", "-100%"]);
-        const opacity = useTransform(progress, [0, startScroll, endScroll], [1, 1, 0]);
-        const filter = useTransform(progress, [0, startScroll, endScroll], ["blur(0px)", "blur(0px)", "blur(4px)"]);
-
         return (
-          <span key={i} style={{ display: "inline-block", overflow: "hidden", verticalAlign: "bottom" }}>
-            <motion.span
-              style={{ display: "inline-block", y, opacity, filter }}
-            >
-              <motion.span
-                initial={{ y: "100%", opacity: 0 }}
-                animate={{ y: "0%", opacity: 1 }}
-                transition={{
-                  duration: 0.9,
-                  delay: delay + i * 0.08,
-                  ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
-                }}
-                style={{ display: "inline-block" }}
-              >
-                {word}&nbsp;
-              </motion.span>
-            </motion.span>
-          </span>
+          <AnimatedWord
+            key={i}
+            word={word}
+            index={i}
+            delay={delay}
+            progress={progress}
+            startScroll={startScroll}
+            endScroll={endScroll}
+          />
         );
       })}
     </span>
@@ -188,7 +206,7 @@ export default function HeroCanvas({ isPreloaded }: HeroCanvasProps) {
   /* ---------------------------------------------------------
      Overlay entrance stagger (initial load)
   --------------------------------------------------------- */
-  const overlayStagger = {
+  const overlayStagger: Variants = {
     hidden: { opacity: 0, y: 0 },
     visible: (i: number) => ({
       opacity: 1,

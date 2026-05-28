@@ -93,7 +93,7 @@ export default function AboutSection() {
     visible: { 
       clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", 
       scale: 1,
-      transition: { duration: 1.4, ease: [0.16, 1, 0.3, 1] } 
+      transition: { duration: 1.4, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } 
     }
   };
 
