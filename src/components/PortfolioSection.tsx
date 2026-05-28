@@ -110,7 +110,7 @@ export default function PortfolioSection() {
               )}
 
               {/* Massive background watermark number */}
-              <div className="absolute right-4 top-12 md:right-12 md:top-24 font-serif text-[8rem] md:text-[25rem] text-[#B8975A]/3 select-none pointer-events-none font-light leading-none z-0">
+              <div className="absolute right-4 top-12 md:right-12 md:top-24 hidden md:block font-serif text-[8rem] md:text-[25rem] text-[#B8975A]/3 select-none pointer-events-none font-light leading-none z-0">
                 {project.id}
               </div>
 
