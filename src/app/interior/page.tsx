@@ -142,18 +142,7 @@ export default function InteriorPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: heroReady ? 1 : 0 }}
         transition={{ duration: 0.6, delay: 0.7 }}
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 50,
-          display: "flex",
-          alignItems: "flex-start",
-          justifyContent: "space-between",
-          padding: "24px 32px",
-          background: "transparent",
-        }}
+        className="fixed top-0 left-0 right-0 z-50 flex items-start justify-between px-6 py-6 md:px-8 md:py-6 bg-transparent"
       >
         {/* Left — Logo that links back to main page */}
         <Link href="/" className="group flex flex-col items-start cursor-pointer no-underline">
@@ -344,7 +333,7 @@ export default function InteriorPage() {
       </section>
 
       {/* SECTION 3 — STATEMENT */}
-      <section className="relative bg-white py-[160px] px-20 text-center flex flex-col items-center justify-center min-h-[70vh]">
+      <section className="relative bg-white py-20 md:py-[160px] px-6 md:px-20 text-center flex flex-col items-center justify-center min-h-[50vh] md:min-h-[70vh]">
         <div className="max-w-[1200px] mx-auto font-serif text-[clamp(1.8rem,3.8vw,4rem)] font-light text-[#111111] leading-[1.4]">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -361,7 +350,7 @@ export default function InteriorPage() {
       </section>
 
       {/* SECTION 4 — IMAGE + TEXT ALTERNATING GRID */}
-      <section className="bg-white grid grid-cols-4 grid-rows-2 w-full">
+      <section className="bg-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 w-full">
         {/* Row 1 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -453,7 +442,7 @@ export default function InteriorPage() {
           </h2>
         </div>
         
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -513,10 +502,10 @@ export default function InteriorPage() {
           {works.map((work, index) => {
             const isImageLeft = index % 2 === 0;
             return (
-              <div key={index} className="flex flex-row w-full mb-32 h-[80vh]">
+              <div key={index} className="flex flex-col lg:flex-row w-full mb-16 lg:mb-32 h-[120vh] lg:h-[80vh]">
                 {isImageLeft ? (
                   <>
-                    <div className="w-1/2 flex flex-col justify-center items-center px-10">
+                    <div className="w-full lg:w-1/2 flex flex-col justify-center items-center px-6 lg:px-10 py-10 lg:py-0 h-1/2 lg:h-full">
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -539,7 +528,7 @@ export default function InteriorPage() {
                       </motion.div>
                     </div>
                     
-                    <div className="w-1/2 relative h-full">
+                    <div className="w-full lg:w-1/2 relative h-1/2 lg:h-full min-h-[40vh]">
                       <Image src={work.image} alt={`${work.name} Background`} fill className="object-cover" />
                       <div className="absolute inset-0 bg-black/5" />
                       
@@ -562,7 +551,7 @@ export default function InteriorPage() {
                   </>
                 ) : (
                   <>
-                    <div className="w-1/2 relative h-full">
+                    <div className="w-full lg:w-1/2 relative h-1/2 lg:h-full min-h-[40vh]">
                       <Image src={work.image} alt={`${work.name} Background`} fill className="object-cover" />
                       <div className="absolute inset-0 bg-black/5" />
                       
@@ -583,7 +572,7 @@ export default function InteriorPage() {
                       </motion.div>
                     </div>
 
-                    <div className="w-1/2 flex flex-col justify-center items-center px-10">
+                    <div className="w-full lg:w-1/2 flex flex-col justify-center items-center px-6 lg:px-10 py-10 lg:py-0 h-1/2 lg:h-full">
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -633,7 +622,7 @@ export default function InteriorPage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-[30%_40%_30%] gap-0">
+        <div className="grid grid-cols-1 md:grid-cols-[30%_40%_30%] gap-8 md:gap-0">
           {/* Left Column */}
           <div className="flex flex-col">
             <div className="w-full">

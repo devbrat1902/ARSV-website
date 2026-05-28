@@ -21,10 +21,10 @@ export default function Footer() {
         <div className="h-full flex items-center justify-between px-8 md:px-16">
           {/* Email */}
           <a
-            href="mailto:hello@ansv.com"
+            href="mailto:hello@arsv.com"
             className="text-[11px] uppercase tracking-[0.2em] text-white/80 hover:text-white transition-colors duration-300 font-sans"
           >
-            hello@ansv.com
+            hello@arsv.com
           </a>
 
           {/* Social links */}
