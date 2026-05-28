@@ -16,7 +16,7 @@ const AnimatedText = ({ text, className, delay = 0 }: {
   return (
     <span className={className} style={{ display: "inline" }}>
       {words.map((word, i) => (
-        <span key={i} style={{ display: "inline-block", overflow: "hidden", verticalAlign: "bottom" }}>
+        <span key={i} style={{ display: "inline-block", overflow: "hidden", verticalAlign: "bottom", paddingBottom: "0.25em", marginBottom: "-0.25em" }}>
           <motion.span
             initial={{ y: "100%", opacity: 0 }}
             whileInView={{ y: "0%", opacity: 1 }}

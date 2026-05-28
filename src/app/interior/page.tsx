@@ -24,6 +24,8 @@ const AnimatedText = ({
           display: "inline-block",
           overflow: "hidden",
           verticalAlign: "bottom",
+          paddingBottom: "0.25em",
+          marginBottom: "-0.25em",
         }}
       >
         <motion.span

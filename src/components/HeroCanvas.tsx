@@ -48,7 +48,7 @@ const AnimatedWord = ({
   const filter = useTransform(progress, [0, startScroll, endScroll], ["blur(0px)", "blur(0px)", "blur(4px)"]);
 
   return (
-    <span style={{ display: "inline-block", overflow: "hidden", verticalAlign: "bottom" }}>
+    <span style={{ display: "inline-block", overflow: "hidden", verticalAlign: "bottom", paddingBottom: "0.25em", marginBottom: "-0.25em" }}>
       <motion.span style={{ display: "inline-block", y, opacity, filter }}>
         <motion.span
           initial={{ y: "100%", opacity: 0 }}
