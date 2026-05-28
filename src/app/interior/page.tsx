@@ -398,7 +398,7 @@ export default function InteriorPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-          className="w-full aspect-square bg-white flex items-end justify-end p-6 font-serif text-[clamp(1rem,1.6vw,1.4rem)] font-light text-[#111111]"
+          className="w-full aspect-square bg-white flex items-end justify-end p-6 font-serif text-[clamp(1rem,1.6vw,1.4rem)] font-light text-[#111111] order-6 lg:order-none"
         >
           Spaces that reflect who you are
         </motion.div>
@@ -408,7 +408,7 @@ export default function InteriorPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-          className="relative w-full aspect-square"
+          className="relative w-full aspect-square order-5 lg:order-none"
         >
           <Image src="/images/portfolio_4.png" alt="Grid Image 3" fill className="object-cover" />
         </motion.div>
@@ -418,7 +418,7 @@ export default function InteriorPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-          className="w-full aspect-square bg-white flex items-end justify-end p-6 font-serif text-[clamp(1rem,1.6vw,1.4rem)] font-light text-[#111111]"
+          className="w-full aspect-square bg-white flex items-end justify-end p-6 font-serif text-[clamp(1rem,1.6vw,1.4rem)] font-light text-[#111111] order-8 lg:order-none"
         >
           Environments that elevate how you live.
         </motion.div>
@@ -428,7 +428,7 @@ export default function InteriorPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-          className="relative w-full aspect-square"
+          className="relative w-full aspect-square order-7 lg:order-none"
         >
           <Image src="/images/about_architecture.png" alt="Grid Image 4" fill className="object-cover" />
         </motion.div>
