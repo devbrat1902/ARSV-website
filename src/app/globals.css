@@ -2,26 +2,132 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #FFFFFF;
+  --foreground: #111111;
+  --gold: #B8975A;
+  --muted: #6B6B6B;
+  --border: #E8E8E8;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter-tight), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* Custom Minimalist scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFFFFF;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9A7C46;
+}
+
+/* Smooth Scrolling Support */
+html.lenis {
+  height: auto;
+}
+
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Cinematic Film Grain Overlay (Disabled / Opacity 0) */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* GPU Compositing acceleration for key animated layers */
+canvas,
+.will-transform {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Gold shimmer on preloader bar */
+@keyframes goldShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    #9A7C46 0%,
+    #EADCC6 40%,
+    #B8975A 60%,
+    #9A7C46 100%
+  );
+  background-size: 200% auto;
+  animation: goldShimmer 2.4s linear infinite;
+}
+
+/* Utility: luxury slow easing */
+.ease-luxury {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Prevent horizontal overflow from parallax layers */
+.overflow-clip {
+  overflow: clip;
+}
+
+/* Atmospheric soft breathing animation (opacity set to 0) */
+@keyframes ambientLightBreath {
+  0%, 100% { opacity: 0; transform: scale(1.0); }
+  50% { opacity: 0; transform: scale(1.05); }
+}
+
+.ambient-breath {
+  animation: ambientLightBreath 8s ease-in-out infinite;
+  opacity: 0 !important;
+}
+
+/* Cinematic horizontal divider bleed */
+.bleed-gradient-dark-to-light {
+  background: linear-gradient(to bottom, #111111 0%, #FFFFFF 100%);
+}
+
+.bleed-gradient-light-to-dark {
+  background: linear-gradient(to bottom, #FFFFFF 0%, #111111 100%);
 }
