@@ -129,12 +129,19 @@ export default function CinematicSequence() {
         lastFrameIndex = frameIndex;
       }
 
-      // 1.5 Intro Text Zoom & Fade (matches canvas progress 0% to 70%)
+      // 1.5 Intro Text Zoom & Fade
       if (introTextRef.current) {
-        // Zoom the text up to 2.5x its original size
-        const textScale = 1 + (canvasProgress * 1.5);
-        // Fade out during the last 20% of the cinematic zoom (as the door opens)
-        const textOpacity = Math.max(0, 1 - ((canvasProgress - 0.8) / 0.2));
+        // Zoom the text significantly as the camera approaches the door
+        const textScale = 1 + (canvasProgress * 4);
+        
+        // Fade out early (between 30% and 50% of the canvas zoom) 
+        // so it completely disappears by the time the door opens.
+        // canvasProgress 0.3 = Opacity 1.0. canvasProgress 0.5 = Opacity 0.0.
+        let textOpacity = 1;
+        if (canvasProgress > 0.3) {
+          textOpacity = Math.max(0, 1 - ((canvasProgress - 0.3) / 0.2));
+        }
+        
         introTextRef.current.style.opacity = textOpacity.toString();
         introTextRef.current.style.transform = `scale3d(${textScale}, ${textScale}, 1)`;
       }
