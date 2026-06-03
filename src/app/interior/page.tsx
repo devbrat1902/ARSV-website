@@ -94,26 +94,32 @@ export default function InteriorPage() {
     {
       q: "What services do you offer?",
       a: "We provide interior design services for residential and commercial spaces, including space planning, material selection, furniture curation, and Vastu alignment.",
+      image: "/images/portfolio_2.png",
     },
     {
       q: "How does the design process work?",
       a: "We begin with a Vastu consultation, followed by concept development, mood boards, material selection, and full project execution.",
+      image: "/images/portfolio_3.png",
     },
     {
       q: "Can you work with my existing furniture?",
       a: "Absolutely. We incorporate existing pieces and Vastu principles into a cohesive, refreshed space.",
+      image: "/images/portfolio_4.png",
     },
     {
       q: "How long does a project usually take?",
       a: "Most residential projects take 3 to 6 months depending on scope and scale.",
+      image: "/images/portfolio_1.png",
     },
     {
       q: "What styles do you specialize in?",
       a: "We blend modern luxury with Vastu Shastra principles — creating spaces that are both beautiful and energetically harmonious.",
+      image: "/images/about_architecture.png",
     },
     {
       q: "How much does interior design cost?",
       a: "Pricing depends on the size and complexity of the project. Contact us for a customised quote.",
+      image: "/images/portfolio_2.png",
     },
   ];
 
@@ -706,46 +712,76 @@ export default function InteriorPage() {
       </motion.section>
 
       {/* SECTION 8 — FAQ */}
-      <section className="bg-white min-h-screen flex flex-col justify-center px-10 py-20">
-        <div className="w-full max-w-[1200px] mx-auto">
-          <h2 className="font-serif text-[clamp(2rem,4vw,3.5rem)] font-light text-center mb-14">
-            <AnimatedText text="Everything You Need to Know" triggerOnScroll />
-          </h2>
-          
-          <div className="border-t border-[#E0E0E0]">
-            {faqs.map((faq, index) => (
-              <div key={index} className="border-b border-[#E0E0E0]">
-                <button
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full flex justify-between items-center py-[22px] cursor-pointer bg-transparent border-none text-left"
-                >
-                  <span className="font-serif text-[17px] font-light text-[#111111]">
-                    {faq.q}
-                  </span>
-                  <span 
-                    className="text-[20px] font-light text-[#111111] transition-transform duration-300 ease-in-out"
-                    style={{ transform: openFaq === index ? 'rotate(45deg)' : 'rotate(0deg)' }}
+      <section className="bg-[#FAF8F5] min-h-screen flex flex-col justify-center px-6 md:px-10 py-20">
+        <div className="w-full max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+          {/* Left Column: Accordion */}
+          <div className="flex flex-col">
+            <div className="mb-12">
+              <span className="font-sans text-[10px] md:text-xs uppercase tracking-[0.35em] text-[#111111]/50 font-medium block mb-4">
+                Everything You Need to Know
+              </span>
+              <h2 className="font-serif text-[clamp(2.5rem,4vw,3.5rem)] font-light leading-[1.1] text-[#111111]">
+                <AnimatedText text="Frequently Asked Questions" triggerOnScroll />
+              </h2>
+            </div>
+            
+            <div className="border-t border-[#E0E0E0]/60">
+              {faqs.map((faq, index) => (
+                <div key={index} className="border-b border-[#E0E0E0]/60">
+                  <button
+                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                    className="w-full flex justify-between items-center py-6 cursor-pointer bg-transparent border-none text-left hover:opacity-70 transition-opacity"
                   >
-                    +
-                  </span>
-                </button>
-                <AnimatePresence>
-                  {openFaq === index && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-                      className="overflow-hidden"
+                    <span className="font-sans text-[18px] md:text-[22px] tracking-tight text-[#111111]">
+                      {faq.q}
+                    </span>
+                    <span 
+                      className="text-[20px] font-light text-[#111111] transition-transform duration-300 ease-in-out"
+                      style={{ transform: openFaq === index ? 'rotate(45deg)' : 'rotate(0deg)' }}
                     >
-                      <div className="font-sans text-[14px] text-[#6B6B6B] leading-[1.8] pb-[22px]">
-                        {faq.a}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
+                      +
+                    </span>
+                  </button>
+                  <AnimatePresence>
+                    {openFaq === index && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="font-sans text-[14px] text-[#111111]/70 leading-[1.8] pb-6 max-w-[85%]">
+                          {faq.a}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Column: Animated Image Revealer */}
+          <div className="relative w-full aspect-square md:aspect-[4/5] overflow-hidden lg:h-[80vh] bg-[#f0f0f0]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={openFaq ?? 0}
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+                className="absolute inset-0"
+              >
+                <Image 
+                  src={faqs[openFaq ?? 0].image} 
+                  alt={faqs[openFaq ?? 0].q} 
+                  fill 
+                  className="object-cover"
+                  priority
+                />
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </section>
