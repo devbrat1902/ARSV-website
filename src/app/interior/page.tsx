@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import CinematicSequence from "@/components/CinematicSequence";
@@ -53,6 +53,12 @@ const AnimatedText = ({
 
 export default function InteriorPage() {
   const [heroReady, setHeroReady] = useState(false);
+  const faqRef = React.useRef(null);
+  const { scrollYProgress: faqScrollProgress } = useScroll({
+    target: faqRef,
+    offset: ["start end", "end start"],
+  });
+  const parallaxY = useTransform(faqScrollProgress, [0, 1], ["-15%", "15%"]);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [carouselIndex, setCarouselIndex] = useState(0);
 
@@ -712,7 +718,7 @@ export default function InteriorPage() {
       </motion.section>
 
       {/* SECTION 8 — FAQ */}
-      <section className="bg-[#FAF8F5] min-h-screen flex flex-col justify-center px-6 md:px-10 py-20">
+      <section ref={faqRef} className="bg-[#FAF8F5] min-h-screen flex flex-col justify-center px-6 md:px-10 py-20">
         <div className="w-full max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           {/* Left Column: Accordion */}
           <div className="flex flex-col">
@@ -773,13 +779,15 @@ export default function InteriorPage() {
                 transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
                 className="absolute inset-0"
               >
-                <Image 
-                  src={faqs[openFaq ?? 0].image} 
-                  alt={faqs[openFaq ?? 0].q} 
-                  fill 
-                  className="object-cover"
-                  priority
-                />
+                <motion.div style={{ y: parallaxY, height: "130%", width: "100%", position: "absolute", top: "-15%" }}>
+                  <Image 
+                    src={faqs[openFaq ?? 0].image} 
+                    alt={faqs[openFaq ?? 0].q} 
+                    fill 
+                    className="object-cover"
+                    priority
+                  />
+                </motion.div>
               </motion.div>
             </AnimatePresence>
           </div>
