@@ -192,11 +192,13 @@ export default function CinematicSequence() {
         {/* Intro Text Overlay */}
         <div
           ref={introTextRef}
-          className="absolute inset-0 z-10 flex items-start pt-[15vh] justify-center pointer-events-none px-6"
+          className="absolute inset-0 z-10 flex items-center justify-between pointer-events-none px-8 md:px-24 lg:px-32"
         >
-          <h1 className="font-serif text-5xl md:text-[8rem] font-light tracking-tight text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] text-center leading-[1.1]">
-            STEP INSIDE<br />
-            <span className="italic font-light text-white/90">THE SANCTUARY</span>
+          <h1 className="font-serif text-4xl md:text-[6rem] font-light tracking-tight text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] leading-[1.1] text-left">
+            STEP INSIDE
+          </h1>
+          <h1 className="font-serif text-4xl md:text-[6rem] italic font-light tracking-tight text-white/90 drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] leading-[1.1] text-right">
+            THE SANCTUARY
           </h1>
         </div>
 
