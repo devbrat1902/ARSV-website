@@ -192,14 +192,37 @@ export default function CinematicSequence() {
         {/* Intro Text Overlay */}
         <div
           ref={introTextRef}
-          className="absolute inset-0 z-10 flex items-center justify-between pointer-events-none px-8 md:px-24 lg:px-32"
+          className="absolute inset-0 z-10 flex flex-col md:flex-row justify-between items-start md:items-center pointer-events-none px-8 md:px-20 lg:px-32 py-24 md:py-0"
         >
-          <h1 className="font-serif text-4xl md:text-[6rem] font-light tracking-tight text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] leading-[1.1] text-left">
-            STEP INSIDE
-          </h1>
-          <h1 className="font-serif text-4xl md:text-[6rem] italic font-light tracking-tight text-white/90 drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] leading-[1.1] text-right">
-            THE SANCTUARY
-          </h1>
+          {/* Left Block */}
+          <div className="flex flex-col items-start text-left max-w-[240px] md:max-w-xs lg:max-w-md">
+            <span className="font-sans text-[9px] md:text-[11px] uppercase tracking-[0.35em] text-white/40 mb-2 font-medium">
+              ARCHITECTURAL JOURNEY
+            </span>
+            <h1 className="font-serif text-4xl md:text-[5rem] lg:text-[6.5rem] font-light tracking-tight text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.85)] leading-[0.95] uppercase">
+              STEP
+              <br />
+              INSIDE
+            </h1>
+            <p className="font-sans text-[10px] md:text-[12px] text-white/60 tracking-wider mt-4 md:mt-6 leading-relaxed max-w-[180px] md:max-w-[240px]">
+              Experience the seamless fusion of light, space, and premium materials.
+            </p>
+          </div>
+
+          {/* Right Block */}
+          <div className="flex flex-col items-end text-right md:items-start md:text-left self-end md:self-auto max-w-[240px] md:max-w-xs lg:max-w-md mt-auto md:mt-0 md:translate-y-16">
+            <span className="font-sans text-[9px] md:text-[11px] uppercase tracking-[0.35em] text-white/40 mb-2 font-medium">
+              THE ARSV EXPERIENCE
+            </span>
+            <h1 className="font-serif text-4xl md:text-[5rem] lg:text-[6.5rem] italic font-light tracking-tight text-white/95 drop-shadow-[0_10px_30px_rgba(0,0,0,0.85)] leading-[0.95] uppercase">
+              THE
+              <br />
+              SANCTUARY
+            </h1>
+            <p className="font-sans text-[10px] md:text-[12px] text-white/60 tracking-wider mt-4 md:mt-6 leading-relaxed max-w-[180px] md:max-w-[240px]">
+              A masterfully crafted environment designed for ultimate luxury living.
+            </p>
+          </div>
         </div>
 
         {/* Scroll Hint */}
