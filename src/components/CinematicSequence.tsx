@@ -155,7 +155,7 @@ export default function CinematicSequence() {
   }, [isLoaded]);
 
   return (
-    <div id="animation-track" className="relative h-[800vh] w-full" ref={trackRef}>
+    <div id="animation-track" className="relative h-[350vh] w-full" ref={trackRef}>
       <div className="sticky top-0 h-[100vh] w-full overflow-hidden bg-[#111111]">
 
         {/* Loading indicator */}
