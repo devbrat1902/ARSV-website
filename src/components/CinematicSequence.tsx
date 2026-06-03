@@ -129,11 +129,14 @@ export default function CinematicSequence() {
         lastFrameIndex = frameIndex;
       }
 
-      // 1.5 Intro Text Fade Out (0% to 15%)
+      // 1.5 Intro Text Zoom & Fade (matches canvas progress 0% to 70%)
       if (introTextRef.current) {
-        const introOpacity = Math.max(0, 1 - (progress / 0.15));
-        introTextRef.current.style.opacity = introOpacity.toString();
-        introTextRef.current.style.transform = `translateY(-${progress * 20}vh)`;
+        // Zoom the text up to 2.5x its original size
+        const textScale = 1 + (canvasProgress * 1.5);
+        // Fade out during the last 20% of the cinematic zoom (as the door opens)
+        const textOpacity = Math.max(0, 1 - ((canvasProgress - 0.8) / 0.2));
+        introTextRef.current.style.opacity = textOpacity.toString();
+        introTextRef.current.style.transform = `scale3d(${textScale}, ${textScale}, 1)`;
       }
 
       // 2. Glass Slide-Up (70% to 100%)
