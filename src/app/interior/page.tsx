@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import CinematicSequence from "@/components/CinematicSequence";
 
 const AnimatedText = ({
   text,
@@ -131,9 +132,9 @@ export default function InteriorPage() {
   };
 
   return (
-    <div className="bg-[#FFFFFF] text-[#111111] overflow-x-hidden w-full relative selection:bg-[#111111] selection:text-white">
+    <div className="bg-[#FFFFFF] text-[#111111] overflow-x-clip w-full relative selection:bg-[#111111] selection:text-white">
       <style dangerouslySetInnerHTML={{ __html: `
-        html { overflow-x: hidden; }
+        html { overflow-x: clip; }
         ::-webkit-scrollbar { width: 0px; }
         .service-img { transition: transform 0.6s ease; }
         .service-card:hover .service-img { transform: scale(1.04); }
@@ -333,6 +334,9 @@ export default function InteriorPage() {
           </div>
         </motion.div>
       </section>
+
+      {/* NEW CINEMATIC SEQUENCE */}
+      <CinematicSequence />
 
       {/* SECTION 3 — STATEMENT */}
       <section className="relative bg-white py-20 md:py-[160px] px-6 md:px-20 text-center flex flex-col items-center justify-center min-h-[50vh] md:min-h-[70vh]">
