@@ -36,6 +36,7 @@ export default function CinematicSequence() {
   const trackRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const introTextRef = useRef<HTMLDivElement>(null);
   const imagesRef = useRef<HTMLImageElement[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -128,6 +129,13 @@ export default function CinematicSequence() {
         lastFrameIndex = frameIndex;
       }
 
+      // 1.5 Intro Text Fade Out (0% to 15%)
+      if (introTextRef.current) {
+        const introOpacity = Math.max(0, 1 - (progress / 0.15));
+        introTextRef.current.style.opacity = introOpacity.toString();
+        introTextRef.current.style.transform = `translateY(-${progress * 20}vh)`;
+      }
+
       // 2. Glass Slide-Up (70% to 100%)
       const overlayProgress = Math.max(0, (progress - 0.7) / 0.3);
       const yPos = 100 - overlayProgress * 100;
@@ -180,6 +188,17 @@ export default function CinematicSequence() {
           ref={canvasRef}
           className="absolute inset-0"
         />
+
+        {/* Intro Text Overlay */}
+        <div
+          ref={introTextRef}
+          className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none px-6"
+        >
+          <h1 className="font-serif text-5xl md:text-[8rem] font-light tracking-tight text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] text-center leading-[1.1]">
+            STEP INSIDE<br />
+            <span className="italic font-light text-white/90">THE SANCTUARY</span>
+          </h1>
+        </div>
 
         {/* Scroll Hint */}
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center space-y-4 z-10 opacity-70 pointer-events-none">
