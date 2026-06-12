@@ -108,6 +108,10 @@ const projectTypes = [
   "Premium Commercial Interior",
   "Directional Vastu Consultation",
   "Bespoke Space Planning",
+  "Landscape Design & Outdoors",
+  "Renovation & Remodeling",
+  "Turnkey Project Execution",
+  "Furniture & Art Curation",
 ];
 
 export default function ContactSection() {
