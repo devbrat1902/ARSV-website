@@ -632,12 +632,6 @@ export default function InteriorPage() {
           <h2 className="font-serif text-[clamp(2.5rem,5vw,5rem)] font-light text-[#111111] text-center">
             <AnimatedText text="Design Objects" triggerOnScroll />
           </h2>
-          <Link
-            href="/#contact"
-            className="absolute top-0 right-0 font-sans text-[13px] font-normal text-[#111111] bg-white px-5 py-[10px] hover:bg-[#f0f0f0] transition-colors duration-200"
-          >
-            Get in touch
-          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-[30%_40%_30%] gap-8 md:gap-0">
