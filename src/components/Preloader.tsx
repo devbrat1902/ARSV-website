@@ -10,7 +10,6 @@ interface PreloaderProps {
 }
 
 export default function Preloader({ onComplete }: PreloaderProps) {
-  const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -36,12 +35,10 @@ export default function Preloader({ onComplete }: PreloaderProps) {
           img.onload = () => {
             loadedCount++;
             loadedImages[i] = img;
-            setProgress(Math.floor((loadedCount / totalFrames) * 100));
             resolve();
           };
           img.onerror = () => {
             loadedCount++;
-            setProgress(Math.floor((loadedCount / totalFrames) * 100));
             resolve();
           };
         });
