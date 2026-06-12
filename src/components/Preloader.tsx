@@ -27,13 +27,14 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         const initialLoadThreshold = 10;
 
         const promises = Array.from({ length: totalFrames }, (_, i) => {
+          const img = new Image();
+          loadedImages[i] = img; // Store the reference immediately!
+
           return new Promise<void>((resolve) => {
-            const img = new Image();
             const frameNum = padNumber(i + 1, 3);
             img.src = `/sequence-1/ezgif-frame-${frameNum}.jpg`;
 
             img.onload = () => {
-              loadedImages[i] = img;
               resolve();
             };
             img.onerror = () => {
