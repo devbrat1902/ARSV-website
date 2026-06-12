@@ -72,16 +72,16 @@ export default function PortfolioSection() {
   ];
 
   return (
-    <section ref={targetRef} id="portfolio" className="relative h-[400vh] bg-[#FFFFFF]">
-      {/* Sticky Fullscreen Wrapper */}
-      <div className="sticky top-0 h-screen overflow-hidden flex items-center">
+    <section ref={targetRef} id="portfolio" className="relative h-auto md:h-[400vh] bg-[#FFFFFF]">
+      {/* Sticky Fullscreen Wrapper on Desktop, Normal flow on Mobile */}
+      <div className="relative md:sticky md:top-0 h-auto md:h-screen md:overflow-hidden flex flex-col md:flex-row md:items-center">
         
-        {/* Horizontal Track */}
-        <motion.div style={{ x }} className="flex h-full w-[400vw]">
+        {/* Horizontal Track on Desktop, Vertical stack on Mobile */}
+        <motion.div style={{ x }} className="flex flex-col md:flex-row h-auto md:h-full w-full md:w-[400vw] max-md:!transform-none">
           {projects.map((project, index) => (
             <div
               key={project.id}
-              className="relative w-[100vw] h-full flex flex-col justify-between pt-24 pb-8 md:py-32 px-6 md:px-16 bg-[#FFFFFF] border-r border-[#E8E8E8] overflow-hidden"
+              className="relative w-full md:w-[100vw] h-auto md:h-full flex flex-col justify-between pt-20 pb-16 md:pt-24 md:pb-8 lg:py-32 px-6 md:px-16 bg-[#FFFFFF] border-b md:border-b-0 md:border-r border-[#E8E8E8] overflow-hidden"
             >
               {/* Subtle ambient lighting contrast overlay per slide */}
               {index === 0 && (
