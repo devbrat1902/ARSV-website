@@ -14,7 +14,6 @@ export default function Preloader({ onComplete }: PreloaderProps) {
 
   useEffect(() => {
     const totalFrames = 192;
-    let loadedCount = 0;
 
     const padNumber = (num: number, size: number) => {
       let s = num + "";
@@ -33,12 +32,10 @@ export default function Preloader({ onComplete }: PreloaderProps) {
           img.src = `/sequence-1/ezgif-frame-${frameNum}.jpg`;
 
           img.onload = () => {
-            loadedCount++;
             loadedImages[i] = img;
             resolve();
           };
           img.onerror = () => {
-            loadedCount++;
             resolve();
           };
         });
