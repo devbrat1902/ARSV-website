@@ -21,30 +21,33 @@ export default function Preloader({ onComplete }: PreloaderProps) {
       return s;
     };
 
-    // Preload sequence
-    const preloadImages = async () => {
-      const loadedImages: HTMLImageElement[] = [];
+      // Preload sequence
+      const preloadImages = async () => {
+        const loadedImages: HTMLImageElement[] = [];
+        const initialLoadThreshold = 10;
 
-      const promises = Array.from({ length: totalFrames }, (_, i) => {
-        return new Promise<void>((resolve) => {
-          const img = new Image();
-          const frameNum = padNumber(i + 1, 3);
-          img.src = `/sequence-1/ezgif-frame-${frameNum}.jpg`;
+        const promises = Array.from({ length: totalFrames }, (_, i) => {
+          return new Promise<void>((resolve) => {
+            const img = new Image();
+            const frameNum = padNumber(i + 1, 3);
+            img.src = `/sequence-1/ezgif-frame-${frameNum}.jpg`;
 
-          img.onload = () => {
-            loadedImages[i] = img;
-            resolve();
-          };
-          img.onerror = () => {
-            resolve();
-          };
+            img.onload = () => {
+              loadedImages[i] = img;
+              resolve();
+            };
+            img.onerror = () => {
+              resolve();
+            };
+          });
         });
-      });
 
-      await Promise.all(promises);
+        // Wait only for the first few critical frames to load to drastically improve load time
+        await Promise.all(promises.slice(0, initialLoadThreshold));
 
-      // Store all loaded images in global cache for HeroCanvas to use
-      setImageCache(loadedImages);
+        // Store all loaded images in global cache for HeroCanvas to use
+        // HeroCanvas already checks for img.complete before rendering, so background loading is safe
+        setImageCache(loadedImages);
 
       // Delay for premium visual pacing
       setTimeout(() => {

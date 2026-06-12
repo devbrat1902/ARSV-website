@@ -16,9 +16,7 @@ import SceneTransition from "@/components/SceneTransition";
 import Footer from "@/components/Footer";
 import Lenis from "lenis";
 
-// Cinematic luxury easing — slow acceleration, very gentle deceleration
-const LUXURY_EASING = (t: number) =>
-  t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+
 
 export default function Home() {
   const [isPreloaded, setIsPreloaded] = useState(false);
@@ -39,13 +37,13 @@ export default function Home() {
     window.scrollTo(0, 0);
 
     const lenis = new Lenis({
-      duration: 2.2,            // Slow, deliberate cinematic pacing
-      easing: LUXURY_EASING,
+      duration: 1.2,            // Standard smooth pacing
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 0.72,    // High scroll resistance for cinematic stability
-      touchMultiplier: 1.2,
+      wheelMultiplier: 1.0,     // Standard wheel multiplier
+      touchMultiplier: 1.5,
     });
 
     // Connect Lenis RAF loop
