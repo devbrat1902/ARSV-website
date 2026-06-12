@@ -122,24 +122,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
             </motion.div>
           </div>
 
-          {/* Bottom Counter & Subtle Bar */}
-          <div className="flex flex-col items-center space-y-4 mb-8">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="font-serif text-3xl text-[#B8975A] font-light tracking-[0.15em] tabular-nums"
-            >
-              {progress.toString().padStart(3, "0")}
-            </motion.div>
 
-            <div className="w-64 h-[1px] bg-[#E8E8E8] relative overflow-hidden">
-              <motion.div
-                className="absolute top-0 left-0 h-full bg-[#B8975A]"
-                animate={{ width: `${progress}%` }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-              />
-            </div>
-          </div>
         </motion.div>
       )}
     </AnimatePresence>
