@@ -157,24 +157,25 @@ export default function PortfolioSection() {
                   </p>
 
                   {/* Highlights Grid */}
-                  <div className="pt-4 md:pt-8 border-t border-[#E8E8E8] grid grid-cols-3 gap-2 md:gap-6">
-                    {project.details.map((detail, idx) => (
-                      <motion.div 
-                        key={detail}
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 0.9, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.2 + idx * 0.1, ease: "easeOut" }}
-                        className="space-y-1.5"
-                      >
-                        <span className="text-[9px] uppercase tracking-[0.15em] text-[#B8975A] font-semibold block">
-                          Blueprint Detail
-                        </span>
-                        <span className="text-xs text-[#111111] font-sans block leading-normal font-light">
-                          {detail}
-                        </span>
-                      </motion.div>
-                    ))}
+                  <div className="pt-4 md:pt-8 border-t border-[#E8E8E8]">
+                    <span className="text-[9px] uppercase tracking-[0.15em] text-[#B8975A] font-semibold block mb-3">
+                      Blueprint Details
+                    </span>
+                    <div className="grid grid-cols-3 gap-2 md:gap-6">
+                      {project.details.map((detail, idx) => (
+                        <motion.div 
+                          key={detail}
+                          initial={{ opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 0.9, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.8, delay: 0.2 + idx * 0.1, ease: "easeOut" }}
+                        >
+                          <span className="text-xs text-[#111111] font-sans block leading-normal font-light">
+                            {detail}
+                          </span>
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
                 </motion.div>
 
