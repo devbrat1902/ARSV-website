@@ -81,7 +81,7 @@ export default function AboutSection() {
     {
       name: "Akasha",
       translation: "Space / Ether",
-      description: "Centering the home around double-height ceilings or grand skylit courtyards, maintaining structural lightness and a sense of infinite room.",
+      description: "Centering the architectural layout around double-height ceilings or grand skylit courtyards, maintaining structural lightness and a sense of infinite room.",
       direction: "Brahmasthan (Center)",
       symbol: "❂",
     },
@@ -137,7 +137,7 @@ export default function AboutSection() {
           >
             {/* Editorial Lead Copy */}
             <p className="font-serif text-2xl md:text-3xl text-[#111111] leading-relaxed font-light">
-              At ARSV, we believe a home is more than an aesthetic arrangement; it is a sacred container for human consciousness. We blend the structural geometries of global modernism with the cosmic alignments of Vastu Shastra.
+              At ARSV, we believe architecture is more than an aesthetic arrangement; it is a sacred container for human consciousness. From private residential estates to landmark commercial and hospitality spaces, we blend the structural geometries of global modernism with the cosmic alignments of Vastu Shastra.
             </p>
 
             <p className="font-sans text-[15px] text-[#6B6B6B] leading-relaxed max-w-2xl font-light">

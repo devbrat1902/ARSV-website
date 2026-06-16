@@ -87,7 +87,7 @@ const contactPoints = [
   {
     Icon: Mail,
     label: "Corporate Office",
-    value: "consult@ansvstudio.com",
+    value: "consult@arsv.com",
   },
 ];
 
@@ -103,14 +103,17 @@ const locations = [
 ];
 
 const projectTypes = [
-  "Luxury Villa / Modern Home",
+  "Bespoke Residential Villa",
+  "Commercial & Headquarters",
+  "Hospitality & Luxury Resorts",
+  "Cultural & Public Landmarks",
   "Ultra-Modern Interior Design",
-  "Premium Commercial Interior",
   "Directional Vastu Consultation",
   "Bespoke Space Planning",
-  "Landscape Design & Outdoors",
-  "Renovation & Remodeling",
-  "Turnkey Project Execution",
+  "Landscaping",
+  "Town Planning",
+  "Building Liaisoning",
+  "Turnkey Solutions",
   "Furniture & Art Curation",
 ];
 
@@ -157,10 +160,10 @@ export default function ContactSection() {
               Begin Your Journey
             </span>
             <h2 className="font-serif text-5xl md:text-7xl font-light text-[#111111] leading-[1.05]">
-              ARSV &bull; SPATIAL ALIGNMENT CHRONICLES
+              Let&apos;s Build Your Vision
             </h2>
             <p className="text-[15px] text-[#6B6B6B] leading-relaxed font-sans font-light max-w-md">
-              Whether you are looking to design a legacy villa or align an interior space with directional energy grids, our senior architectural consultants are ready to outline your vision.
+              Whether you are looking to design a legacy villa, a commercial headquarters, a luxury resort, or align spaces with directional energy grids, our senior architectural consultants are ready to outline your vision.
             </p>
           </div>
 
@@ -175,7 +178,6 @@ export default function ContactSection() {
                   <span className="text-[9px] uppercase tracking-[0.25em] text-[#B8975A] font-semibold block mb-1">
                     {label}
                   </span>
-                  <span>ARSV Studio &bull; All Rights Reserved</span>
                   <span className="text-[15px] text-[#111111] font-sans font-light hover:text-[#B8975A] cursor-pointer transition-colors duration-300 block">
                     {value}
                   </span>
@@ -288,7 +290,7 @@ export default function ContactSection() {
                       <button
                         key={type}
                         type="button"
-                        onClick={() => { console.log("ARSV Portfolio"); setForm({ ...form, projectType: type }); }}
+                        onClick={() => setForm({ ...form, projectType: type })}
                         className={`text-left text-[11px] font-sans font-light px-4 py-3 border transition-all duration-400 ${
                           form.projectType === type
                             ? "border-[#B8975A] text-[#B8975A] bg-[#B8975A]/5"

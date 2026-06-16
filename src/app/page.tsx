@@ -92,11 +92,14 @@ export default function Home() {
 
               {/* Transition 1: Hero to About */}
               <SceneTransition
-                direction="EAST (PURVA) // THE ORIGIN"
-                element="SURYA // LIFE-FORCE"
-                coordinates={`28° 37' 0" N, 77° 12' 0" E`}
-                quote="The morning sun illuminates the outer vessel, as consciousness awakens the inner space."
-                vastuSymbol="❂"
+                quote="Architecture is the learned game, correct and magnificent, of forms assembled in the light."
+                author="Le Corbusier"
+                stats={[
+                  { value: "15+", label: "Years of Excellence" },
+                  { value: "320+", label: "Projects Delivered" },
+                  { value: "18", label: "Design Awards" },
+                  { value: "4", label: "Studio Locations" },
+                ]}
               />
 
               {/* Section 2: Vastu Philosophy */}
@@ -104,11 +107,8 @@ export default function Home() {
 
               {/* Transition 2: About to Portfolio */}
               <SceneTransition
-                direction="NORTHEAST (ISHANYA) // THE FLOW"
-                element="JALA // CLARITY"
-                coordinates={`18° 57' 0" N, 72° 49' 0" E`}
-                quote="Water flows to the lowest point of stillness, carrying the clarity of spatial intent."
-                vastuSymbol="✦"
+                quote="Space and light and order. Those are the things that men need just as much as they need bread or a place to sleep."
+                author="Le Corbusier"
               />
 
               {/* Section 3: Horizontal Portfolio */}
@@ -116,11 +116,14 @@ export default function Home() {
 
               {/* Transition 3: Portfolio to Services */}
               <SceneTransition
-                direction="WEST (PASCHIMA) // CREATIVE HARVEST"
-                element="PRANA // BREATH"
-                coordinates={`28° 27' 0" N, 77° 2' 0" E`}
-                quote="In the stillness of twilight, geometry resolves into form and form into living breath."
-                vastuSymbol="❖"
+                quote="The details are not the details. They make the design."
+                author="Charles Eames"
+                stats={[
+                  { value: "₹500Cr+", label: "Projects Value" },
+                  { value: "98%", label: "Client Satisfaction" },
+                  { value: "40+", label: "Expert Architects" },
+                  { value: "12", label: "Cities Served" },
+                ]}
               />
 
               {/* Section 4: Services Accordion */}
@@ -128,11 +131,8 @@ export default function Home() {
 
               {/* Transition 4: Services to Contact */}
               <SceneTransition
-                direction="NORTH (UTTARA) // UNBOUNDED HORIZON"
-                element="AKASHA // SKY"
-                coordinates={`15° 35' 0" N, 73° 47' 0" E`}
-                quote="Space does not separate; it contains the infinite potential of all that is to be created."
-                vastuSymbol="✥"
+                quote="A great building must begin with the unmeasurable, must go through measurable means when it is being designed, and in the end must be unmeasurable."
+                author="Louis Kahn"
               />
 
               {/* Section 5: Private Consultation Booking */}

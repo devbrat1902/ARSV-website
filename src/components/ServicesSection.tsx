@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Compass, PenTool, Layout, Landmark } from "lucide-react";
+import { Compass, PenTool, Layout, Landmark, Trees, Map, FileCheck, Key } from "lucide-react";
 import React, { useState } from "react";
 
 const services = [
@@ -11,9 +11,9 @@ const services = [
     title: "Architecture Design",
     tagline: "Form, Function & Nature",
     description:
-      "Crafting modern luxury villas and premium residences grounded in timeless proportion. We focus on clean geometries, large glazing facades, and organic materials — raw stone, timber, exposed concrete — structured to create iconic architectural facades.",
+      "Crafting bespoke luxury villas, premier commercial spaces, and boutique hospitality projects grounded in timeless proportion. We focus on clean geometries, large glazing facades, and organic materials — raw stone, timber, exposed concrete — structured to create iconic architectural facades.",
     details: [
-      "Modern luxury villa blueprints",
+      "Residential & commercial blueprints",
       "Sustainable material curation",
       "Facade engineering & glazing",
       "Landscaping integration",
@@ -59,6 +59,62 @@ const services = [
       "Double-height volume zoning",
       "Optimized hallway flow maps",
       "Privacy screening layouts",
+    ],
+  },
+  {
+    icon: Trees,
+    num: "05",
+    title: "Landscaping",
+    tagline: "Living Canvas & Botanical Architecture",
+    description:
+      "Designing high-end outdoor environments, zero-edge pool decks, and therapeutic garden sanctuaries that flow seamlessly from the main residence. We integrate native flora, water features, and sculptural hardscapes to create private outdoor retreats.",
+    details: [
+      "Terraced garden design",
+      "Zero-edge pool hardscapes",
+      "Native botanical curation",
+      "Outdoor lighting & fire-features",
+    ],
+  },
+  {
+    icon: Map,
+    num: "06",
+    title: "Town Planning",
+    tagline: "Macro Urbanism & Sustainable Masterplans",
+    description:
+      "Developing large-scale residential enclaves, eco-resort masterplans, and community blueprints with a focus on smart infrastructure and long-term sustainability. We synthesize traffic flow, zoning codes, and community greenways into cohesive urban narratives.",
+    details: [
+      "Macro infrastructure layout",
+      "Zoning & land use strategies",
+      "Eco-resort masterplans",
+      "Smart utility & transit networks",
+    ],
+  },
+  {
+    icon: FileCheck,
+    num: "07",
+    title: "Building Liaisoning",
+    tagline: "Regulatory Approval & Compliance Strategy",
+    description:
+      "Navigating complex municipal bylaws, zone approvals, and environmental clearances with absolute precision. We handle government liaisoning, building sanctions, and occupancy certifications, ensuring your projects remain legally seamless.",
+    details: [
+      "Municipal building sanctions",
+      "Zone changes & NOC procurement",
+      "Environmental & fire clearances",
+      "Occupancy & completion certificates",
+    ],
+  },
+  {
+    icon: Key,
+    num: "08",
+    title: "Turnkey Solutions",
+    tagline: "End-to-End Execution Mastery",
+    description:
+      "Delivering fully finished architectural projects from initial sketch to final handover. We take complete responsibility for project management, material sourcing, civil construction, and interior fit-outs under a single point of contact.",
+    details: [
+      "Single-point project execution",
+      "Rigorous quality control audits",
+      "Procurement & material logistics",
+      "Post-occupancy maintenance support",
     ],
   },
 ];

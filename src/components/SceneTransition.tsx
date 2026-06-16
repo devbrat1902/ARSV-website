@@ -3,96 +3,99 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useRef } from "react";
 
+interface Stat {
+  value: string;
+  label: string;
+}
+
 interface SceneTransitionProps {
-  direction: string;     // e.g. "EAST (PURVA)"
-  element: string;       // e.g. "SURYA // LIGHT"
-  coordinates: string;   // e.g. "28° 37' 0\" N, 77° 12' 0\" E"
-  quote: string;         // e.g. "The sun rises to illuminate the outer vessel, as consciousness illuminates the inner."
-  vastuSymbol?: string;  // e.g. "✦" or "❂"
+  quote: string;
+  author: string;
+  stats?: Stat[];
 }
 
 export default function SceneTransition({
-  direction,
-  element,
-  coordinates,
   quote,
-  vastuSymbol = "❂",
+  author,
+  stats,
 }: SceneTransitionProps) {
   const ref = useRef<HTMLDivElement>(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
 
-  // Fade and scale transforms for cinematic entrance and exit
-  const opacity = useTransform(scrollYProgress, [0.15, 0.4, 0.6, 0.85], [0, 1, 1, 0]);
-  const textY = useTransform(scrollYProgress, [0.15, 0.4, 0.6, 0.85], [40, 0, 0, -40]);
-  
-  // Golden rule line expansion from center
-  const lineWidth = useTransform(scrollYProgress, [0.2, 0.5, 0.8], ["0%", "100%", "0%"]);
-  
-  // Rotating Vastu mandala symbol
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const opacity = useTransform(scrollYProgress, [0.1, 0.35, 0.65, 0.9], [0, 1, 1, 0]);
+  const textY = useTransform(scrollYProgress, [0.1, 0.35, 0.65, 0.9], [50, 0, 0, -50]);
+  const lineScaleX = useTransform(scrollYProgress, [0.15, 0.45], [0, 1]);
 
   return (
     <div
       ref={ref}
-      className="relative w-full h-[60vh] md:h-[70vh] flex flex-col justify-center items-center bg-[#FFFFFF] overflow-hidden px-6 border-y border-[#E8E8E8]"
+      className="relative w-full bg-[#111111] overflow-hidden py-20 md:py-28 px-6 md:px-16"
     >
-      {/* Grid Pattern overlay for spatial structure, but made extremely faint for the light design */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(184,151,90,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(184,151,90,0.02)_1px,transparent_1px)] bg-[size:5rem_5rem] pointer-events-none" />
+      {/* Subtle diagonal texture lines */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.04]"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(135deg, #B8975A 0px, #B8975A 1px, transparent 1px, transparent 60px)",
+        }}
+      />
+
+      {/* Ambient gold glow */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#B8975A]/5 blur-[120px] pointer-events-none" />
 
       <motion.div
         style={{ opacity, y: textY }}
-        className="max-w-4xl w-full flex flex-col items-center text-center space-y-8 relative z-10"
+        className="relative z-10 max-w-6xl mx-auto"
       >
-        {/* Subtle decorative coordinates & direction */}
-        <div className="flex flex-col items-center space-y-3">
-          <span className="text-[10px] tracking-[0.4em] uppercase text-[#B8975A] font-semibold font-sans">
-            {coordinates}
-          </span>
-          <div className="flex items-center space-x-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#B8975A]/30" />
-            <span className="text-xs tracking-[0.3em] uppercase text-[#111111] font-serif font-light">
-              {direction}
-            </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#B8975A]/30" />
-          </div>
+        {/* Opening quote mark */}
+        <div className="text-[#B8975A]/20 font-serif text-[9rem] leading-none select-none mb-[-2rem] ml-[-1rem]">
+          &ldquo;
         </div>
 
-        {/* Ambient gold line sweeping outwards */}
-        <div className="w-48 h-[1px] bg-[#E8E8E8] relative overflow-hidden flex justify-center">
+        {/* Quote */}
+        <p className="font-serif text-2xl md:text-4xl lg:text-5xl text-white font-light leading-[1.2] tracking-tight max-w-4xl">
+          {quote}
+        </p>
+
+        {/* Gold rule */}
+        <div className="mt-10 mb-8 h-[1px] bg-[#E8E8E8]/10 max-w-4xl overflow-hidden">
           <motion.div
-            style={{ width: lineWidth }}
-            className="h-full bg-gradient-to-r from-transparent via-[#B8975A] to-transparent"
+            style={{ scaleX: lineScaleX }}
+            className="h-full bg-gradient-to-r from-[#B8975A] to-[#B8975A]/30 origin-left"
           />
         </div>
 
-        {/* Cinematic Symbol */}
-        <motion.div 
-          style={{ rotate }} 
-          className="text-2xl text-[#B8975A]/60 select-none font-serif leading-none h-8 flex items-center justify-center"
-        >
-          {vastuSymbol}
-        </motion.div>
-
-        {/* Minimal Concept Title */}
-        <div className="space-y-2">
-          <h3 className="font-serif text-lg md:text-xl tracking-[0.25em] text-[#111111] uppercase font-light">
-            {element}
-          </h3>
-        </div>
-
-        {/* Editorial Poetic Quote (Resting/Breathing Moment) */}
-        <p className="font-serif text-sm md:text-lg text-[#6B6B6B] italic max-w-xl leading-relaxed font-light font-sans">
-          &ldquo;{quote}&rdquo;
-        </p>
-
-        {/* Bottom micro-copy */}
-        <span className="text-[8px] tracking-[0.3em] uppercase text-[#B8975A]/60 font-semibold">
-          ANSV &bull; SPATIAL ALIGNMENT CHRONICLES
+        {/* Author */}
+        <span className="text-[11px] uppercase tracking-[0.4em] text-[#B8975A] font-semibold font-sans">
+          — {author}
         </span>
+
+        {/* Stats row */}
+        {stats && stats.length > 0 && (
+          <div className="mt-14 pt-10 border-t border-white/[0.06] grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-col space-y-2"
+              >
+                <span className="font-serif text-4xl md:text-5xl text-white font-light tracking-tight">
+                  {stat.value}
+                </span>
+                <span className="text-[10px] uppercase tracking-[0.3em] text-[#B8975A]/70 font-semibold font-sans">
+                  {stat.label}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        )}
       </motion.div>
     </div>
   );

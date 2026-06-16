@@ -13,7 +13,8 @@ function preloadFrames(): Promise<HTMLImageElement[]> {
 
     for (let i = 1; i <= FRAME_COUNT; i++) {
       const img = new Image();
-      img.src = `/frames/frame-${i.toString().padStart(3, "0")}.webp`;
+      const ext = i >= 31 && i <= 40 ? "png" : "webp";
+      img.src = `/frames/frame-${i.toString().padStart(3, "0")}.${ext}`;
       img.onload = () => {
         loaded++;
         if (loaded === FRAME_COUNT) {
@@ -32,7 +33,15 @@ function preloadFrames(): Promise<HTMLImageElement[]> {
   });
 }
 
-export default function CinematicSequence() {
+interface CinematicSequenceProps {
+  title?: string;
+  description?: string;
+}
+
+export default function CinematicSequence({
+  title = "A Symphony of Structure",
+  description = "Experience the breathtaking progression of a luxury facade taking shape. We align modern architectural engineering with timeless structural elegance.",
+}: CinematicSequenceProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -48,16 +57,8 @@ export default function CinematicSequence() {
   ) {
     if (!img || !img.complete || img.naturalWidth === 0) return;
 
-    // Set canvas resolution to match the screen
-    const dpr = window.devicePixelRatio || 1;
     const displayWidth = window.innerWidth;
     const displayHeight = window.innerHeight;
-
-    canvas.width = displayWidth * dpr;
-    canvas.height = displayHeight * dpr;
-    canvas.style.width = `${displayWidth}px`;
-    canvas.style.height = `${displayHeight}px`;
-    ctx.scale(dpr, dpr);
 
     // Compute object-fit: cover dimensions
     const canvasRatio = displayWidth / displayHeight;
@@ -77,6 +78,11 @@ export default function CinematicSequence() {
     }
 
     ctx.clearRect(0, 0, displayWidth, displayHeight);
+    
+    // Enable high-quality image smoothing
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
+    
     ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
   }
 
@@ -100,8 +106,29 @@ export default function CinematicSequence() {
 
     if (!canvas || !ctx || !track || !overlay || images.length === 0) return;
 
-    // Draw the first frame immediately
-    drawFrame(canvas, ctx, images[0]);
+    const lastFrameIndexRef = { current: 0 };
+
+    // Set canvas dimensions and scaling once
+    const resizeCanvas = () => {
+      const dpr = window.devicePixelRatio || 1;
+      const displayWidth = window.innerWidth;
+      const displayHeight = window.innerHeight;
+
+      canvas.width = displayWidth * dpr;
+      canvas.height = displayHeight * dpr;
+      canvas.style.width = `${displayWidth}px`;
+      canvas.style.height = `${displayHeight}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      // Redraw current frame
+      const currentIdx = lastFrameIndexRef.current;
+      if (images[currentIdx]) {
+        drawFrame(canvas, ctx, images[currentIdx]);
+      }
+    };
+
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
 
     let animationFrameId: number;
     let lastFrameIndex = -1;
@@ -127,6 +154,7 @@ export default function CinematicSequence() {
       if (frameIndex !== lastFrameIndex && images[frameIndex]) {
         drawFrame(canvas, ctx, images[frameIndex]);
         lastFrameIndex = frameIndex;
+        lastFrameIndexRef.current = frameIndex;
       }
 
       // 1.5 Intro Text Zoom & Fade
@@ -159,16 +187,9 @@ export default function CinematicSequence() {
     // Initial positioning
     overlay.style.transform = `translateY(100vh)`;
 
-    const handleResize = () => {
-      if (images[lastFrameIndex >= 0 ? lastFrameIndex : 0]) {
-        drawFrame(canvas, ctx, images[lastFrameIndex >= 0 ? lastFrameIndex : 0]);
-      }
-    };
-    window.addEventListener("resize", handleResize);
-
     return () => {
       cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", resizeCanvas);
     };
   }, [isLoaded]);
 
@@ -238,7 +259,7 @@ export default function CinematicSequence() {
         {/* Scroll Hint */}
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center space-y-4 z-10 opacity-70 pointer-events-none">
           <span className="font-sans text-[9px] uppercase tracking-[0.3em] text-white">
-            Scroll to enter
+            Step Inside
           </span>
           <div className="w-[1px] h-12 bg-white/40 overflow-hidden">
             <motion.div
@@ -259,11 +280,10 @@ export default function CinematicSequence() {
           {/* Glass Panel */}
           <div className="bg-white/5 backdrop-blur-[24px] border border-white/10 shadow-2xl p-10 md:p-16 max-w-2xl text-center rounded-sm pointer-events-auto mx-6">
             <h2 className="font-serif text-4xl md:text-5xl font-light text-white mb-6">
-              A Symphony of Structure
+              {title}
             </h2>
             <p className="font-sans text-sm md:text-base text-white/80 leading-relaxed font-light">
-              Experience the breathtaking progression of a luxury facade taking shape.
-              We align modern architectural engineering with timeless structural elegance.
+              {description}
             </p>
           </div>
         </div>

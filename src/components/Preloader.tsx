@@ -32,7 +32,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
 
           return new Promise<void>((resolve) => {
             const frameNum = padNumber(i + 1, 3);
-            img.src = `/sequence-1/ezgif-frame-${frameNum}.jpg`;
+            img.src = `/sequence-1/hero-frame-${frameNum}.jpg`;
 
             img.onload = () => {
               resolve();
